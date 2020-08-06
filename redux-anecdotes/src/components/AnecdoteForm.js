@@ -16,8 +16,13 @@ const AnecdoteForm = () => {
     }, 5000)
   }
 
+  const style = {
+    marginBottom: 10,
+    marginTop: 10,
+  }
+
   return (
-    <div>
+    <div style={style}>
       <h2>create new</h2>
       <form onSubmit={addAnecdote}>
         <div>
