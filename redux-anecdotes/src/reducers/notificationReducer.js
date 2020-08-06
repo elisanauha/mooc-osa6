@@ -1,4 +1,4 @@
-const notification = 'Notification'
+const notification = ''
 
 const notificationReducer = (state = notification, action) => {
   console.log('notification state now: ', state)
@@ -6,26 +6,20 @@ const notificationReducer = (state = notification, action) => {
 
   switch (action.type) {
     case 'VOTE':
-      const id = action.data.id
-      return 'voted for ' + id
+      const content = action.data.content
+      return "you voted '" + content + "'"
     case 'NEW_ANECDOTE':
-      return 'added ' + action.data.anecdote
+      return "you added '" + action.data.anecdote + "'"
+    case 'EMPTY':
+      return ''
     default:
       return state
   }
 }
 
-export const createAnecdote = (anecdote) => {
+export const emptyNotification = () => {
   return {
-    type: 'NEW_ANECDOTE',
-    data: { anecdote },
-  }
-}
-
-export const voteForAnecdote = (id) => {
-  return {
-    type: 'VOTE',
-    data: { id },
+    type: 'EMPTY',
   }
 }
 
