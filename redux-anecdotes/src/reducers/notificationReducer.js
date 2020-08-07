@@ -5,11 +5,8 @@ const notificationReducer = (state = notification, action) => {
   console.log('notification action', action)
 
   switch (action.type) {
-    case 'VOTE':
-      const content = action.data.content
-      return "you voted '" + content + "'"
-    case 'NEW_ANECDOTE':
-      return "you added '" + action.data.content + "'"
+    case 'SET':
+      return action.data
     case 'EMPTY':
       return ''
     default:
@@ -20,6 +17,19 @@ const notificationReducer = (state = notification, action) => {
 export const emptyNotification = () => {
   return {
     type: 'EMPTY',
+  }
+}
+
+export const setNotification = (message, time) => {
+  return async (dispatch) => {
+    dispatch({
+      type: 'SET',
+      data: message,
+    })
+    await new Promise((resolve) => setTimeout(resolve, time * 1000))
+    dispatch({
+      type: 'EMPTY',
+    })
   }
 }
 
