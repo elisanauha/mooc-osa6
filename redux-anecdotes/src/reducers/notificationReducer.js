@@ -1,4 +1,5 @@
 const notification = ''
+let timeoutID
 
 const notificationReducer = (state = notification, action) => {
   console.log('notification state now: ', state)
@@ -22,11 +23,14 @@ export const emptyNotification = () => {
 
 export const setNotification = (message, time) => {
   return async (dispatch) => {
+    clearTimeout(timeoutID)
     dispatch({
       type: 'SET',
       data: message,
     })
-    await new Promise((resolve) => setTimeout(resolve, time * 1000))
+    await new Promise(
+      (resolve) => (timeoutID = setTimeout(resolve, time * 1000))
+    )
     dispatch({
       type: 'EMPTY',
     })
