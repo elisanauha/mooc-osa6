@@ -9,7 +9,7 @@ const notificationReducer = (state = notification, action) => {
       const content = action.data.content
       return "you voted '" + content + "'"
     case 'NEW_ANECDOTE':
-      return "you added '" + action.data.anecdote + "'"
+      return "you added '" + action.data.anecdote.content + "'"
     case 'EMPTY':
       return ''
     default:
